@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 var runner = require('./lib/child_process_runner')
 , logging = require('./lib/logging')
 , optionsHandler = require('./lib/handle_options.js')
@@ -20,7 +19,6 @@ childProcess.updateEvent(function(status){
   util.log('Updating API status');
   notificator.notifyApi(status);
 });
-
 childProcess.on('end', function(returnCode){
   notificator.on('end', function(){
     process.exit(returnCode);
