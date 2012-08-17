@@ -1,20 +1,20 @@
 {
-  "author": "Svyatoslav Covanov <svyatoslav.covanov@applidget.com>, Romain Pechayre <romain.pechayre@applidget.com>",
-  "name": "ps-dock",
-  "description": "Simple process monitoring utility",
+  "author": "Svyatoslav Covanov <svyatoslav.covanov@applidget.com>",
+  "name": "ps-engine",
+  "description": "Do a remote shell",
   "version": "0.0.1",
-  "private": false,
+  "private": true,
   "repository": {
     "type": "git",
-    "url": "git://github.com/applidget/ps-dock.git"
+    "url": "git://github.com/applidget/deployment-platform.git"
   },
-  "main": "ps-dock.js",
+  "main": "ps-engine.js",
   "dependencies": {
 	"pty.js" : "*",
 	"portchecker" : "*"
   },
   "bin": {
-    "ps-dock": "./ps-dock.js"
+    "ps-engine": "./ps-engine.js"
   },
   "devDependencies": {},
   "optionalDependencies": {},
