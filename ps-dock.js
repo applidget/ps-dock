@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 var runner = require('./lib/child_process_runner')
 , logging = require('./lib/logging')
-, optionsHandler = require('./lib/handle_options.js')
-, notificatorLib = require('./lib/notify_api.js')
-, distantSocket = require('./lib/distant_socket.js')
+, optionsHandler = require('./lib/handle_options')
+, notificatorLib = require('./lib/notify_api')
+, distantSocket = require('./lib/distant_socket')
 , util = require('util');
 var psDock = this;
 
