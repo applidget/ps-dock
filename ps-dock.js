@@ -20,40 +20,8 @@ childProcess.updateEvent(function(status){
   util.log('Updating API status');
   notificator.notifyApi(status);
 });
+var sock = distantSocket.createDistantSocket(optionsHandler.options, childProcess.stream);
 
-var buffer = '';
-var bufferize = function(data){
-  buffer += data;
-}
-childProcess.output.on('data', bufferize);
-var sock;
-if(optionsHandler.options.distantSocket != undefined){
-  sock = distantSocket.createDistantSocket(optionsHandler.options);
-  sock.on('end', function(){
-    sock.write('Connexion will be closed')
-    childProcess.kill('SIGINT', 2)
-    psDock.socketOpened = false;
-  });
-  sock.on('connect', function(){
-    psDock.socketOpened = true;
-    childProcess.output.removeListener('data',bufferize);
-    sock.write(buffer);
-    buffer = ''
-    childProcess.output.on('data', function(data){
-      if(psDock.socketOpened){
-        sock.write('' + data);
-      }
-    });
-  });
-  sock.on('data', function(data){
-    childProcess.input.write(data);
-  });
-  setTimeout(function(){
-    if(!psDock.socketOpened){
-      sock.close(function(){ process.exit(returnCode) });
-    }
-  }, 30000);
-}
 childProcess.on('end', function(returnCode){
   notificator.on('end', function(){
     if(optionsHandler.options.distantSocket != undefined){
@@ -66,6 +34,7 @@ childProcess.on('end', function(returnCode){
     }
   });
 });
+
 var signals = { 'SIGINT': 2, 'SIGTERM': 15, 'SIGHUP': 1, 'SIGKILL': 9, 'SIGPIPE': 13, 'SIGALRM': 14, 'SIGQUIT': 15};
 
 for (var signal in signals){
