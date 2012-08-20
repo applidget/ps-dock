@@ -5,7 +5,7 @@ var runner = require('./lib/child_process_runner')
 , notificatorLib = require('./lib/notify_api.js')
 , distantSocket = require('./lib/distant_socket.js')
 , util = require('util');
-
+var psDock = this;
 
 var realArgs = process.argv;
 realArgs.splice(0, 2); // Start at 2 to ignore node and script_file_path
@@ -30,29 +30,29 @@ var sock;
 if(optionsHandler.options.distantSocket != undefined){
   sock = distantSocket.createDistantSocket(optionsHandler.options);
   sock.on('end', function(){
+    sock.write('Connexion will be closed')
     childProcess.kill('SIGINT', 2)
-    socketOpened = false;
+    psDock.socketOpened = false;
   });
   sock.on('connect', function(){
-    var socketOpened = true;
+    psDock.socketOpened = true;
     childProcess.output.removeListener('data',bufferize);
     sock.write(buffer);
     buffer = ''
     childProcess.output.on('data', function(data){
-      if(socketOpened){
+      if(psDock.socketOpened){
         sock.write('' + data);
       }
     });
   });
-  setTimeout(function(){
-    if(!socketOpened){
-      sock.write('test')
-      sock.close(function(){ process.exit(returnCode) });
-    }
-  }, 30000);
   sock.on('data', function(data){
     childProcess.input.write(data);
   });
+  setTimeout(function(){
+    if(!psDock.socketOpened){
+      sock.close(function(){ process.exit(returnCode) });
+    }
+  }, 30000);
 }
 childProcess.on('end', function(returnCode){
   notificator.on('end', function(){
