@@ -20,6 +20,7 @@ childProcess.updateEvent(function(status){
   util.log('Updating API status');
   notificator.notifyApi(status);
 });
+
 var sock = distantSocket.createDistantSocket(optionsHandler.options, childProcess.stream);
 
 childProcess.on('end', function(returnCode){
