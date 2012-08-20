@@ -25,14 +25,16 @@ var sock = distantSocket.createDistantSocket(optionsHandler.options, childProces
 
 childProcess.on('end', function(returnCode){
   notificator.on('end', function(){
-    if(optionsHandler.options.distantSocket != undefined){
-      sock.close(function(){
+    logger.on('logRotateFinished', function(){
+      if(optionsHandler.options.distantSocket != undefined){
+        sock.close(function(){
+          process.exit(returnCode);
+        });
+      }
+      else{
         process.exit(returnCode);
-      });
-    }
-    else{
-      process.exit(returnCode);
-    }
+      }
+    });
   });
 });
 
