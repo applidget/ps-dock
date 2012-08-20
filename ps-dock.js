@@ -23,18 +23,27 @@ childProcess.updateEvent(function(status){
 
 var sock = distantSocket.createDistantSocket(optionsHandler.options, childProcess.stream);
 
+var exit = function (returnCode){
+  if(optionsHandler.options.distantSocket != undefined){
+    sock.close(function(){
+      process.exit(returnCode);
+    });
+  }
+  else{
+    process.exit(returnCode);
+  }
+}
+
 childProcess.on('end', function(returnCode){
   notificator.on('end', function(){
-    logger.on('logRotateFinished', function(){
-      if(optionsHandler.options.distantSocket != undefined){
-        sock.close(function(){
-          process.exit(returnCode);
-        });
-      }
-      else{
-        process.exit(returnCode);
-      }
-    });
+    if(logger.isChangingLogs){
+      logger.on('logRotateFinished', function(){
+        exit(returnCode);
+      });
+    }
+    else {
+        exit(returnCode);
+    }
   });
 });
 
