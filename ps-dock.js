@@ -11,7 +11,8 @@ var realArgs = process.argv;
 realArgs.splice(0, 2); // Start at 2 to ignore node and script_file_path
 
 var optionsHandler = optionsHandler.createHandler(realArgs);
-console.log(optionsHandler.options.bindPort)
+console.log('test')
+console.log(optionsHandler.options.bindPort + 'b')
 var logger = logging.createFileLogger(optionsHandler.options);
 var notificator = notificatorLib.createNotificator(optionsHandler.options.webHookUrl, optionsHandler.options.timeout);
 var childProcess = runner.runChildProcess(optionsHandler.options, logger);
@@ -36,7 +37,7 @@ var exit = function (returnCode){
 
 childProcess.on('end', function(returnCode){
   notificator.on('end', function(){
-    if(logger.isChangingLogs){
+    if(!logger.isChangingLogs){
       logger.on('logRotateFinished', function(){
         exit(returnCode);
       });
