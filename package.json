@@ -12,8 +12,7 @@
   "dependencies": {
 	"pty.js" : "*",
 	"portchecker" : "*",
-  "properties" : "*",
-  "synchronous" : "*"
+  "properties" : "*"
   },
   "bin": {
     "ps-dock": "./ps-dock.js"
