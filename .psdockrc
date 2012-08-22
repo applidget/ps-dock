@@ -1,10 +1,7 @@
-webHookUrl = "http://localhost:3000"
-webHook.auth_token = "test"
-webHook.hosted_app_id = "truc"
-webHook.path = "/tesbis"
-logrotation = "daily"
-bindPort = true
-dropUnhandledLogs = true
-distantSocket = 
-dataToSocket = "Hello World"
-timeout = 30000
+WEB_HOOK_URL = "http://localhost:3000"
+LOGROTATION = "daily"
+BIND_PORT = true
+DROP_UNHANDLED_LOGS = true
+DISTANT_SOCKET = 
+DATA_TO_SOCKET = "Hello World"
+TIMEOUT = 30000
