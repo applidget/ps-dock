@@ -1,7 +1,0 @@
-WEB_HOOK_URL = "http://localhost:3000"
-LOGROTATION = "daily"
-BIND_PORT = true
-DROP_UNHANDLED_LOGS = true
-DISTANT_SOCKET = 
-DATA_TO_SOCKET = "Hello World"
-TIMEOUT = 30000
