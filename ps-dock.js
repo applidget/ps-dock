@@ -15,10 +15,18 @@ var childProcess;
 var signals = { 'SIGINT': 2, 'SIGTERM': 15, 'SIGHUP': 1, 'SIGKILL': 9, 'SIGPIPE': 13, 'SIGALRM': 14, 'SIGQUIT': 15};
 
 var optionsHandler = optionsHandler.createHandler(realArgs, function(optionsHandler){
-  logger = logging.createFileLogger(optionsHandler.options);
-  logger = tcpLogging.createTcpLogger(optionsHandler.options);
+  if (optionsHandler.options.baseLogFile == undefined){
+    if(optionsHandler.options.distantSocket == undefined){
+      console.log("--log-file or --socket-address has to be specified !");
+      process.exit(1);
+    } else {
+      logger = tcpLogging.createTcpLogger(optionsHandler.options);
+    }
+  }
+  else {
+    logger = logging.createFileLogger(optionsHandler.options);
+  }
   notificator = notificatorLib.createNotificator(optionsHandler.options.webHookUrl, optionsHandler.options.timeout);
-//  childProcess = runner.runChildProcess(optionsHandler.options, logger);
   childProcess = runner.runChildProcess(optionsHandler.options, logger);
   childProcess.updateEvent(function(status){
     util.log('Updating API status');
