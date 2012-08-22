@@ -1,0 +1,10 @@
+webHookUrl = "http://localhost:3000"
+webHook.auth_token = "test"
+webHook.hosted_app_id = "truc"
+webHook.path = "/tesbis"
+logrotation = "daily"
+bindPort = true
+dropUnhandledLogs = true
+distantSocket = 
+dataToSocket = "Hello World"
+timeout = 30000

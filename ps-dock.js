@@ -1,35 +1,58 @@
 #!/usr/bin/env node
 var runner = require('./lib/child_process_runner')
 , logging = require('./lib/logging')
-, optionsHandler = require('./lib/handle_options.js')
-, notificatorLib = require('./lib/notify_api.js')
+, optionsHandler = require('./lib/handle_options')
+, notificatorLib = require('./lib/notify_api')
+, tcpLogging = require('./lib/tcp_logging')
 , util = require('util');
-
+var psDock = this;
 
 var realArgs = process.argv;
 realArgs.splice(0, 2); // Start at 2 to ignore node and script_file_path
-
-var optionsHandler = optionsHandler.createHandler(realArgs);
-
-var logger = logging.createFileLogger(optionsHandler.options);
-var notificator = notificatorLib.createNotificator(optionsHandler.options.webHookUrl, optionsHandler.options.timeout);
-var childProcess = runner.runChildProcess(optionsHandler.options, logger);
-
-childProcess.updateEvent(function(status){
-  util.log('Updating API status');
-  notificator.notifyApi(status);
-});
-childProcess.on('end', function(returnCode){
-  notificator.on('end', function(){
-    process.exit(returnCode);
-  });
-});
-
+var logger;
+var notificator;
+var childProcess;
 var signals = { 'SIGINT': 2, 'SIGTERM': 15, 'SIGHUP': 1, 'SIGKILL': 9, 'SIGPIPE': 13, 'SIGALRM': 14, 'SIGQUIT': 15};
 
-for (var signal in signals){
-  process.on(signal, childProcess.killChildProc(signals[signal], signal));
-}
+var optionsHandler = optionsHandler.createHandler(realArgs, function(optionsHandler){
+  if (optionsHandler.options.baseLogFile == undefined){
+    if(optionsHandler.options.distantSocket == undefined){
+      console.log("--log-file or --socket-address has to be specified !");
+      process.exit(1);
+    } else {
+      logger = tcpLogging.createTcpLogger(optionsHandler.options);
+    }
+  }
+  else {
+    logger = logging.createFileLogger(optionsHandler.options);
+  }
+  notificator = notificatorLib.createNotificator(optionsHandler.options.webHookUrl, optionsHandler.options.timeout);
+  childProcess = runner.runChildProcess(optionsHandler.options, logger);
+  childProcess.updateEvent(function(status){
+    util.log('Updating API status');
+    notificator.notifyApi(status);
+  });
+  var exit = function (returnCode){
+    logger.close(function(){
+      process.exit(returnCode);
+    });
+  }
+  childProcess.on('end', function(returnCode){
+    notificator.on('end', function(){
+      if(logger.loggerIsNotAvailable){
+        logger.on('loggerIsAvailable', function(){
+          exit(returnCode);
+        });
+      }
+      else {
+        exit(returnCode);
+      }
+    });
+  });
+  for (var signal in signals){
+    process.on(signal, childProcess.killChildProc(signals[signal], signal));
+  }
+});
 
 process.on('SIGUSR2', function(code){
   childProcess.childProc.destroy();
