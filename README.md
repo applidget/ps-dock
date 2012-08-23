@@ -62,7 +62,7 @@ It will send informations about status of process launched by ps-dock to the web
 If bind-port is set to true then ps-dock will wait that process open port specified in environment variable to inform Web Hook that process status is up.
 
     export PORT=2000
-    WEB_HOOK_URL="https://localhost:666/hi?who=world" ps-dock bash --stdout test.log --bind-port true
+    WEB_HOOK_URL="https://localhost:666/hi?who=world" ps-dock nc -l $PORT --stdout test.log --bind-port true
 ###DropUnhandledLogs
 Sometimes, process emits too many logs. Trying to redirect them all to a file or a socket could slow the process. So, by default, if there is too many logs, they are dropped.
 
