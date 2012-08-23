@@ -20,7 +20,7 @@ var optionsHandler = optionsHandler.createHandler(realArgs, function(optionsHand
     process.exit(1);
   }
   else {
-    logger = logging.createFileLogger(optionsHandler.options);
+    logger = optionsHandler.logging.createLogger(optionsHandler.options);
   }
   notificator = notificatorLib.createNotificator(optionsHandler.options.webHookUrl, optionsHandler.options.timeout);
   childProcess = runner.runChildProcess(optionsHandler.options, logger);
