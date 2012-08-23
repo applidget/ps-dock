@@ -45,7 +45,7 @@ Three types of stdout can be specified :
         ps-dock bash --stdout socket://localhost:666
     Data can be sent on connection to the distant socket in this way:
 
-        ps-dock bash --stdout socket://localhost:666/"hello world!"
+        ps-dock bash --stdout socket://localhost:666/hello_world
 * TLS Socket
 
         ps-dock bash --stdout tls://localhost:666
