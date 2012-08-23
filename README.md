@@ -24,18 +24,22 @@ By default, ps-dock will search for a file name .psdockrc in current home or cur
 ###Stdout
 Three types of stdout can be specified :
 
-* Logfile
+* 
+Logfile
+
 For instance, you can specify a file name test.log to ps-dock. then it handles logrotation : by defaults, log files are rotated every day, but you can tell to ps-dock to rotate logs every second, every minute, every hour, every day, or every week in this way:
     
     ps-dock bash --stdout test.log --log-rotate hourly
 
-* TCP Socket
+* 
+TCP Socket
 
     ps-dock bash --stdout socket://localhost:666
 Data can be sent on connection to the distant socket in this way:
 
     ps-dock bash --stdout socket://localhost:666/"hello world!"
     
-* TLS Socket
+*
+ TLS Socket
 
     ps-dock bash --stdout tls://localhost:666
