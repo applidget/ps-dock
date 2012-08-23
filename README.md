@@ -23,13 +23,13 @@ By default, ps-dock will search for a file name .psdockrc in current home or cur
     ps-dock bash --stdout test.log --config /home
 Here is an example of .psdockrc :
 
->WEB_HOOK_URL=http://localhost:3000
->LOGROTATION=daily
->BIND_PORT=true
->DROP_UNHANDLED_LOGS=true
->DISTANT_SOCKET= 
->DATA_TO_SOCKET=Hello World
->TIMEOUT=30000
+    WEB_HOOK_URL=http://localhost:3000
+    LOGROTATION=daily
+    BIND_PORT=true
+    DROP_UNHANDLED_LOGS=true
+    DISTANT_SOCKET= 
+    DATA_TO_SOCKET=Hello World
+    TIMEOUT=30000
 ###Stdout
 Three types of stdout can be specified :
 
