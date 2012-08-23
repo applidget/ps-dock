@@ -21,6 +21,15 @@ Config file can be specified in this way :
 By default, ps-dock will search for a file name .psdockrc in current home or current directory. To specify an other directory, you can use --config option:
 
     ps-dock bash --stdout test.log --config /home
+Here is an example of .psdockrc :
+
+>WEB_HOOK_URL=http://localhost:3000
+>LOGROTATION=daily
+>BIND_PORT=true
+>DROP_UNHANDLED_LOGS=true
+>DISTANT_SOCKET= 
+>DATA_TO_SOCKET=Hello World
+>TIMEOUT=30000
 ###Stdout
 Three types of stdout can be specified :
 
@@ -40,3 +49,6 @@ Three types of stdout can be specified :
 * TLS Socket
 
         ps-dock bash --stdout tls://localhost:666
+        
+###Web Hook
+A web hook can be specified i
