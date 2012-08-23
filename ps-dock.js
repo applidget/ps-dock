@@ -36,11 +36,14 @@ var optionsHandler = optionsHandler.createHandler(realArgs, function(optionsHand
   childProcess.on('end', function(returnCode){
     notificator.on('end', function(){
       if(logger.loggerIsNotAvailable){
+        console.log('not available')
         logger.on('loggerIsAvailable', function(){
+          console.log('available')
           exit(returnCode);
         });
       }
       else {
+                console.log('available')
         exit(returnCode);
       }
     });
