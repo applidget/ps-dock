@@ -34,6 +34,8 @@ For instance, you can specify a file name test.log to ps-dock. then it handles l
 * 
 TCP Socket
 
+A distant socket to which send datas from process. Process input is plugged to this socket...
+
     ps-dock bash --stdout socket://localhost:666
 Data can be sent on connection to the distant socket in this way:
 
