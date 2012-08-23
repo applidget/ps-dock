@@ -2,3 +2,4 @@ LOGROTATION = test
 WEB_HOOK_URL = http://localhost:3000
 BIND_PORT = true
 TIMEOUT = 30000
+DATA_TO_SOCKET=hello world
