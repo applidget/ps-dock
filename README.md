@@ -51,4 +51,15 @@ Three types of stdout can be specified :
         ps-dock bash --stdout tls://localhost:666
         
 ###Web Hook
-A web hook can be specified i
+A web hook can be specified as an environment variable:
+
+    WEB_HOOK_URL="http://localhost:666/hello_alice?name=boris" ps-dock bash --stdout test.log
+Or in config file as specified before.
+It will send informations about status of process launched by ps-dock to the web hook. Body of datas sent are formatted likethis :
+
+    {ps: { status: stat}}
+###BindPort
+If bindPort is set to true then ps-dock will wait that process open port specified in environment variable to inform Web Hook that process status is up.
+
+    export PORT=2000
+    WEB_HOOK_URL="https://localhost:666/hi?who=world" ps-dock bash --stdout test.log --bindPort true
