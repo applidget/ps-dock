@@ -12,5 +12,6 @@ logs
 results
 
 node_modules
+npm-debug.logscript.rb
 npm-debug.log
 script.rb
