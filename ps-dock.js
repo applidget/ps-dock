@@ -46,7 +46,6 @@ var optionsHandler = optionsHandler.createHandler(realArgs, function(optionsHand
     });
   });
   for (var signal in signals){
-    console.log(signal);
     process.on(signal, childProcess.killChildProc(signals[signal], signal));
   }
 });
