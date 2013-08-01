@@ -10,7 +10,7 @@
   },
   "main": "ps-dock.js",
   "dependencies": {
-	"pty.js" : "*",
+	"pty.js" : "2.3",
 	"portchecker" : "*",
   "properties" : "*",
   "node-syslog" : "*"

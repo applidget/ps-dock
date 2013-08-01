@@ -12,7 +12,7 @@ realArgs.splice(0, 2); // Start at 2 to ignore node and script_file_path
 var logger;
 var notificator;
 var childProcess;
-var signals = { 'SIGINT': 2, 'SIGTERM': 15, 'SIGHUP': 1, 'SIGKILL': 9, 'SIGPIPE': 13, 'SIGALRM': 14, 'SIGQUIT': 15};
+var signals = { 'SIGINT': 2, 'SIGTERM': 15, 'SIGHUP': 1, 'SIGPIPE': 13, 'SIGALRM': 14, 'SIGQUIT': 15};
 
 var optionsHandler = optionsHandler.createHandler(realArgs, function(optionsHandler){
   if (optionsHandler.options.stdout == undefined){
@@ -46,6 +46,7 @@ var optionsHandler = optionsHandler.createHandler(realArgs, function(optionsHand
     });
   });
   for (var signal in signals){
+    console.log(signal);
     process.on(signal, childProcess.killChildProc(signals[signal], signal));
   }
 });
