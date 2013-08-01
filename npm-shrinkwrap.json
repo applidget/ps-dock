@@ -1,0 +1,43 @@
+{
+  "name": "ps-dock",
+  "version": "0.2.2",
+  "dependencies": {
+    "pty.js": {
+      "version": "0.2.3",
+      "from": "pty.js@0.2.3",
+      "resolved": "https://registry.npmjs.org/pty.js/-/pty.js-0.2.3.tgz"
+    },
+    "portchecker": {
+      "version": "0.1.2",
+      "from": "portchecker@*"
+    },
+    "properties": {
+      "version": "0.3.3",
+      "from": "properties@*",
+      "dependencies": {
+        "buffered-reader": {
+          "version": "1.0.1",
+          "from": "buffered-reader@*",
+          "dependencies": {
+            "errno-codes": {
+              "version": "1.0.2",
+              "from": "errno-codes@*"
+            }
+          }
+        },
+        "buffered-writer": {
+          "version": "0.2.3",
+          "from": "buffered-writer@*"
+        },
+        "error-provider": {
+          "version": "0.0.6",
+          "from": "error-provider@*"
+        }
+      }
+    },
+    "node-syslog": {
+      "version": "1.1.7",
+      "from": "node-syslog@*"
+    }
+  }
+}
