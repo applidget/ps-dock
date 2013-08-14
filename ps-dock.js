@@ -22,7 +22,6 @@ var optionsHandler = optionsHandler.createHandler(realArgs, function(optionsHand
   else {
     logger = optionsHandler.logging.createLogger(optionsHandler.options);
   }
-  console.log(optionsHandler.options.env);
   notificator = notificatorLib.createNotificator(optionsHandler.options.webHookUrl, optionsHandler.options.timeout);
   childProcess = runner.runChildProcess(optionsHandler.options, logger);
   childProcess.updateEvent(function(status){
