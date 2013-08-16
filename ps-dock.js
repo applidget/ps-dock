@@ -14,6 +14,12 @@ var notificator;
 var childProcess;
 var signals = { 'SIGINT': 2, 'SIGTERM': 15, 'SIGHUP': 1, 'SIGPIPE': 13, 'SIGALRM': 14, 'SIGQUIT': 15};
 
+if(realArgs.indexOf("--version") != -1) {
+  var infos = require('./package.json');
+  console.log(infos.version);
+  return;
+}
+
 var optionsHandler = optionsHandler.createHandler(realArgs, function(optionsHandler){
   if (optionsHandler.options.stdout == undefined){
     util.log("--stdout has to be specified !");
