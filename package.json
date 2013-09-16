@@ -11,9 +11,9 @@
   "main": "ps-dock.js",
   "dependencies": {
 	"pty.js" : "0.2.3",
-	"portchecker" : "*",
   "properties" : "*",
-  "node-syslog" : "*"
+  "node-syslog" : "*",
+  "lsof" : "*"
   },
   "bin": {
     "ps-dock": "./ps-dock.js"
