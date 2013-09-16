@@ -1,0 +1,22 @@
+{
+  "name": "ps-dock",
+  "version": "0.3.4",
+  "dependencies": {
+    "pty.js": {
+      "version": "0.2.3",
+      "from": "pty.js@0.2.3"
+    },
+    "properties": {
+      "version": "1.0.3",
+      "from": "properties@*"
+    },
+    "node-syslog": {
+      "version": "1.1.7",
+      "from": "node-syslog@*"
+    },
+    "lsof": {
+      "version": "0.0.3",
+      "from": "lsof@*"
+    }
+  }
+}
