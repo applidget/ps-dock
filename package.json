@@ -2,7 +2,7 @@
   "author": "Svyatoslav Covanov <svyatoslav.covanov@applidget.com>, Romain Pechayre <romain.pechayre@applidget.com>",
   "name": "ps-dock",
   "description": "Simple process monitoring utility",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "private": false,
   "repository": {
     "type": "git",
