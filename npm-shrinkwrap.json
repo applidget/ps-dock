@@ -1,18 +1,28 @@
 {
   "name": "ps-dock",
-  "version": "0.3.6",
+  "version": "0.4.0",
   "dependencies": {
     "pty.js": {
-      "version": "0.2.3"
+      "version": "0.2.3",
+      "from": "pty.js@0.2.3"
     },
     "properties": {
-      "version": "1.0.3"
+      "version": "1.1.2",
+      "from": "properties@*",
+      "resolved": "https://registry.npmjs.org/properties/-/properties-1.1.2.tgz"
     },
     "node-syslog": {
-      "version": "1.1.7"
+      "version": "1.1.7",
+      "from": "node-syslog@*"
+    },
+    "underscore": {
+      "version": "1.5.2",
+      "from": "underscore@1.5.2",
+      "resolved": "https://registry.npmjs.org/underscore/-/underscore-1.5.2.tgz"
     },
     "lsof": {
-      "version": "0.0.3"
+      "version": "0.0.3",
+      "from": "lsof@*"
     }
   }
 }

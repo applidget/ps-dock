@@ -13,6 +13,7 @@
 	"pty.js" : "0.2.3",
   "properties" : "*",
   "node-syslog" : "*",
+  "underscore" : "1.5.2",
   "lsof" : "*"
   },
   "bin": {
