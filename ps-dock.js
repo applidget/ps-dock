@@ -43,7 +43,13 @@ var optionsHandler = optionsHandler.createHandler(realArgs, function(optionsHand
     notificator.on('end', function(){
       if(logger.loggerIsNotAvailable){
         logger.on('loggerIsAvailable', function(){
-          exit(returnCode);
+          if(logger.isWrittingData) {
+            logger.on('writteCompleted', function() {
+              exit(returnCode);  
+            });
+          } else {
+            exit(returnCode);
+          }
         });
       }
       else {
