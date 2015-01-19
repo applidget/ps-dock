@@ -2,17 +2,22 @@
   "name": "ps-dock",
   "version": "0.4.3",
   "dependencies": {
-    "pty.js": {
-      "version": "0.2.3"
-    },
-    "properties": {
-      "version": "1.0.3"
+    "lsof": {
+      "version": "0.1.0",
+      "from": "lsof@*"
     },
     "node-syslog": {
-      "version": "1.1.7"
+      "version": "1.1.7",
+      "from": "node-syslog@*"
     },
-    "lsof": {
-      "version": "0.0.3"
+    "properties": {
+      "version": "1.2.1",
+      "from": "properties@*"
+    },
+    "pty.js": {
+      "version": "0.2.3",
+      "from": "pty.js@0.2.3",
+      "resolved": "https://registry.npmjs.org/pty.js/-/pty.js-0.2.3.tgz"
     }
   }
 }
