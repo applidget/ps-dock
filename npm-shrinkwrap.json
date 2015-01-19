@@ -1,6 +1,6 @@
 {
   "name": "ps-dock",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "dependencies": {
     "pty.js": {
       "version": "0.2.3"
